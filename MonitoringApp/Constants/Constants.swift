@@ -14,3 +14,7 @@ let SENSORNAME_URL = "\(BASE_URL)/sensornames"
 
 let RANGE_URL = "\(BASE_URL)/config"
 
+let GRAPH_VIEW = "barScene"
+
+let SENSOR_DATA_NOTIFICATION_KEY = "com.monitorApp.sensorData"
+

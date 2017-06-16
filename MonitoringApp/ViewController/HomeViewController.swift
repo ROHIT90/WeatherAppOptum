@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 class HomeViewController: UIViewController {
+    
     @IBOutlet weak var tabbleView: UITableView!
     var sensorNameArray = [String]()
     var sensorName:String = ""
@@ -29,9 +30,9 @@ class HomeViewController: UIViewController {
     func getSensors() {
         Alamofire.request(SENSORNAME_URL).responseData { (responseData) -> Void in
             if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
-                if let resData = swiftyJsonVar.arrayObject {
-                    self.sensorNameArray = resData as! [String]
+                let json = JSON(responseData.result.value!)
+                if let data = json.arrayObject {
+                    self.sensorNameArray = data as! [String]
                 }
                 if self.sensorNameArray.count > 0 {
                     self.tabbleView.reloadData()
@@ -41,9 +42,9 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "barScene") {
+        if(segue.identifier == GRAPH_VIEW) {
             let barViewController = segue.destination as! BarChartViewController
-            barViewController.sesnosrName =  sensorName
+            barViewController.sensorName =  sensorName
         }
     }
 }
@@ -57,7 +58,7 @@ extension HomeViewController: UITableViewDelegate {
         }
         SubscribedSensor.sharedInstance.subscirbedSensorName = currentCell.titleLabel.text
         SocketIOManager.sharedInstance.establishConnection()
-        performSegue(withIdentifier: "barScene", sender: nil)
+        performSegue(withIdentifier: GRAPH_VIEW, sender: nil)
     }
 }
 
@@ -69,7 +70,6 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell {
             cell.titleLabel.text = sensorNameArray[indexPath.row]
-        
             return cell
         } else {
             return HomeTableViewCell()

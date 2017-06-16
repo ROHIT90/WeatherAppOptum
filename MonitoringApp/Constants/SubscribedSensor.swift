@@ -12,5 +12,4 @@ class SubscribedSensor {
     static var sharedInstance = SubscribedSensor()
     private init() {}
     var subscirbedSensorName:String?
-    var newTemperatureValue:Float?
 }

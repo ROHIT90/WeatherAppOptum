@@ -11,47 +11,20 @@ import SwiftyJSON
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    
-    let mySpecialNotificationKey = "com.rohitgandu.harami"
-
-    
+    let sensorDataNotificationKey = SENSOR_DATA_NOTIFICATION_KEY
     let socket = SocketIOClient(socketURL: URL(string: BASE_URL)!, config: [.log(true), .forcePolling(true)])
     
     override init() {
         super.init()
-
         socket.on("connect") { ( dataArray, ack) -> Void in
-            print("Connected")
             self.socket.emit("subscribe", SubscribedSensor.sharedInstance.subscirbedSensorName!)
         }
         
         socket.on("data") { ( dataArray, ack) -> Void in
-            
             let dataDict:[String: Any] = ["data": dataArray]
-
-            
-            NotificationCenter.default.post(name: Notification.Name(rawValue: self.mySpecialNotificationKey), object: dataArray, userInfo: dataDict)
-            
-            
-            
-//            let swiftyJsonVar = JSON(dataArray)
-//            print("temppp\(swiftyJsonVar[0]["val"])")
-//            let newValueTemp = swiftyJsonVar[0]["val"].string
-//            if newValueTemp != nil {
-//                SubscribedSensor.sharedInstance.newTemperatureValue = Float(newValueTemp!)
-//            } else {
-//                SubscribedSensor.sharedInstance.newTemperatureValue = 0.0
-//            }
-//            
-            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: self.sensorDataNotificationKey), object: dataArray, userInfo: dataDict)
         }
-//        socket.onAny {
-//            print("got event: \($0.event) with items \(String(describing: $0.items))")
-//        }
-        
- 
     }
-    
     
     func establishConnection() {
         socket.connect()
@@ -60,5 +33,5 @@ class SocketIOManager: NSObject {
     func closeConnection() {
         socket.disconnect()
     }
-
+    
 }
