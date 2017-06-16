@@ -19,6 +19,9 @@ class BarChartViewController: UIViewController {
     var temperatureArray:Array<Float> = []
     var maxTemperature:Float?
     var minTemperature:Float?
+    @IBOutlet weak var deviationValue: UILabel!
+    @IBOutlet weak var minValue: UILabel!
+    @IBOutlet weak var maxValue: UILabel!
     let sensorDataNotificationKey = SENSOR_DATA_NOTIFICATION_KEY
     @IBOutlet weak var chart: Chart!
     
@@ -37,8 +40,19 @@ class BarChartViewController: UIViewController {
             
             self.temperatureArray.append(newValueTemp)
             let series = ChartSeries(self.temperatureArray)
-            series.color = ChartColors.redColor()
+            if newValueTemp > maxTemperature! || newValueTemp < minTemperature! {
+                series.color = ChartColors.redColor()
+                deviationValue.textColor = UIColor.red
+            } else if newValueTemp == maxTemperature! || newValueTemp == minTemperature! {
+                series.color = ChartColors.greenColor()
+                deviationValue.textColor = UIColor.green
+            } else {
+                series.color = ChartColors.greenColor()
+                deviationValue.textColor = UIColor.green
+            }
+            
             self.chart.add(series)
+            self.deviationValue.text = String(newValueTemp)
         }
     }
     
@@ -53,6 +67,8 @@ class BarChartViewController: UIViewController {
                     if let max = temprature["max"] as? Float {
                         self.maxTemperature = max
                     }
+                    self.minValue.text = String(describing: self.minTemperature!)
+                    self.maxValue.text = String(describing: self.maxTemperature!)
                     self.temperatureArray.append(self.minTemperature!)
                     self.temperatureArray.append(self.maxTemperature!)
                     let series = ChartSeries(self.temperatureArray)
