@@ -19,18 +19,28 @@ class BarChartViewController: UIViewController {
     var temperatureArray:Array<Float> = []
     var maxTemperature:Float?
     var minTemperature:Float?
+    let sensorDataNotificationKey = SENSOR_DATA_NOTIFICATION_KEY
+
     @IBOutlet weak var deviationValue: UILabel!
     @IBOutlet weak var minValue: UILabel!
     @IBOutlet weak var maxValue: UILabel!
-    let sensorDataNotificationKey = SENSOR_DATA_NOTIFICATION_KEY
     @IBOutlet weak var chart: Chart!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = sensorName
-        getTemperatureRange()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getTemperatureRange()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func updateGraph(_ notification: NSNotification) {

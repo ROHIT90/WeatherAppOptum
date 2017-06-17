@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -181,39 +182,35 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="IyG-iU-mxG" firstAttribute="leading" secondItem="npJ-ct-O3Y" secondAttribute="leading" constant="8" id="ELJ-8P-Q2G"/>
+                                    <constraint firstItem="cRW-oT-rTH" firstAttribute="leading" secondItem="EhL-Ir-jCq" secondAttribute="leading" id="BPE-PF-nIE"/>
+                                    <constraint firstItem="Dmy-6d-ENF" firstAttribute="top" secondItem="npJ-ct-O3Y" secondAttribute="top" constant="49" id="EOz-CO-f87"/>
                                     <constraint firstItem="IyG-iU-mxG" firstAttribute="top" secondItem="cRW-oT-rTH" secondAttribute="bottom" constant="12" id="F67-yw-xmG"/>
-                                    <constraint firstItem="cRW-oT-rTH" firstAttribute="top" secondItem="npJ-ct-O3Y" secondAttribute="top" constant="8" id="GD5-3n-Ihs"/>
                                     <constraint firstItem="EhL-Ir-jCq" firstAttribute="top" secondItem="IyG-iU-mxG" secondAttribute="bottom" constant="18" id="HoA-UP-gFi"/>
-                                    <constraint firstAttribute="bottom" secondItem="t3c-zo-MIN" secondAttribute="bottom" constant="31" id="JD5-0Z-IhH"/>
-                                    <constraint firstItem="R0J-dG-NOA" firstAttribute="top" secondItem="npJ-ct-O3Y" secondAttribute="top" constant="8" id="KRw-cz-4Rs"/>
-                                    <constraint firstAttribute="trailing" secondItem="R0J-dG-NOA" secondAttribute="trailing" constant="8" id="KbV-7z-vmq"/>
-                                    <constraint firstItem="EhL-Ir-jCq" firstAttribute="leading" secondItem="npJ-ct-O3Y" secondAttribute="leading" constant="8" id="Nbs-T7-Foj"/>
-                                    <constraint firstAttribute="height" constant="156" id="Oa8-0h-uQb"/>
-                                    <constraint firstAttribute="trailing" secondItem="Dmy-6d-ENF" secondAttribute="trailing" constant="8" id="QhP-0n-NRc"/>
-                                    <constraint firstAttribute="bottom" secondItem="EhL-Ir-jCq" secondAttribute="bottom" constant="31" id="Qp2-sM-vH8"/>
+                                    <constraint firstItem="cRW-oT-rTH" firstAttribute="leading" secondItem="npJ-ct-O3Y" secondAttribute="leadingMargin" id="Ljr-gF-Qu7"/>
                                     <constraint firstItem="t3c-zo-MIN" firstAttribute="top" secondItem="Dmy-6d-ENF" secondAttribute="bottom" constant="18" id="Suu-sL-kZ0"/>
                                     <constraint firstItem="Dmy-6d-ENF" firstAttribute="top" secondItem="R0J-dG-NOA" secondAttribute="bottom" constant="12" id="b8e-tR-9y7"/>
-                                    <constraint firstAttribute="width" constant="375" id="bTr-4A-8Ai"/>
+                                    <constraint firstItem="Dmy-6d-ENF" firstAttribute="leading" secondItem="R0J-dG-NOA" secondAttribute="leading" id="cfb-j6-b8V"/>
                                     <constraint firstItem="EhL-Ir-jCq" firstAttribute="top" secondItem="IyG-iU-mxG" secondAttribute="bottom" constant="18" id="dcp-zm-hWW"/>
                                     <constraint firstItem="t3c-zo-MIN" firstAttribute="top" secondItem="Dmy-6d-ENF" secondAttribute="bottom" constant="18" id="edV-GY-2oY"/>
+                                    <constraint firstItem="cRW-oT-rTH" firstAttribute="leading" secondItem="IyG-iU-mxG" secondAttribute="leading" id="fQJ-vc-JWy"/>
                                     <constraint firstItem="IyG-iU-mxG" firstAttribute="top" secondItem="cRW-oT-rTH" secondAttribute="bottom" constant="12" id="iKd-1p-bnc"/>
-                                    <constraint firstAttribute="trailing" secondItem="t3c-zo-MIN" secondAttribute="trailing" constant="8" id="o4k-tN-Z50"/>
+                                    <constraint firstItem="Dmy-6d-ENF" firstAttribute="leading" secondItem="t3c-zo-MIN" secondAttribute="leading" id="ikc-pi-zrj"/>
+                                    <constraint firstItem="Dmy-6d-ENF" firstAttribute="trailing" secondItem="npJ-ct-O3Y" secondAttribute="trailingMargin" id="jef-Wm-43Y"/>
                                     <constraint firstItem="Dmy-6d-ENF" firstAttribute="top" secondItem="R0J-dG-NOA" secondAttribute="bottom" constant="12" id="o6k-Fr-wHd"/>
-                                    <constraint firstItem="cRW-oT-rTH" firstAttribute="leading" secondItem="npJ-ct-O3Y" secondAttribute="leading" constant="8" id="xCj-yb-IYQ"/>
+                                    <constraint firstItem="Dmy-6d-ENF" firstAttribute="baseline" secondItem="IyG-iU-mxG" secondAttribute="baseline" id="pg9-vY-8EN"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z7r-j0-D4w" firstAttribute="top" secondItem="GT9-L6-vn7" secondAttribute="bottom" constant="155" id="282-Bt-xVg"/>
+                            <constraint firstItem="z7r-j0-D4w" firstAttribute="top" secondItem="npJ-ct-O3Y" secondAttribute="bottom" id="6gd-w9-QZn"/>
+                            <constraint firstItem="npJ-ct-O3Y" firstAttribute="top" secondItem="GT9-L6-vn7" secondAttribute="bottom" constant="-1" id="I5R-eS-uaZ"/>
                             <constraint firstItem="GT9-L6-vn7" firstAttribute="top" secondItem="HlS-gb-zXo" secondAttribute="bottom" id="QX3-Cb-RrP"/>
                             <constraint firstItem="GT9-L6-vn7" firstAttribute="leading" secondItem="Bzt-SB-PNe" secondAttribute="leading" id="Qft-2b-GDo"/>
                             <constraint firstAttribute="trailing" secondItem="GT9-L6-vn7" secondAttribute="trailing" id="SC2-jU-n9Y"/>
-                            <constraint firstItem="npJ-ct-O3Y" firstAttribute="leading" secondItem="Bzt-SB-PNe" secondAttribute="leading" id="Spe-JB-7A8"/>
-                            <constraint firstItem="z7r-j0-D4w" firstAttribute="top" secondItem="npJ-ct-O3Y" secondAttribute="bottom" id="eTa-jO-oyb"/>
-                            <constraint firstItem="npJ-ct-O3Y" firstAttribute="top" secondItem="HlS-gb-zXo" secondAttribute="bottom" constant="447" id="oCg-f7-9am"/>
-                            <constraint firstAttribute="trailing" secondItem="npJ-ct-O3Y" secondAttribute="trailing" id="qqj-kt-kWH"/>
+                            <constraint firstItem="npJ-ct-O3Y" firstAttribute="leading" secondItem="Bzt-SB-PNe" secondAttribute="leading" id="dnE-fT-a8m"/>
+                            <constraint firstAttribute="trailing" secondItem="npJ-ct-O3Y" secondAttribute="trailing" id="x9k-Ct-IjZ"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
