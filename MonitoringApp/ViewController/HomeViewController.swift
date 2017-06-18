@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp()
         getSensors()
     }
     
@@ -40,12 +41,18 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == GRAPH_VIEW) {
             let barViewController = segue.destination as! BarChartViewController
             barViewController.sensorName =  sensorName
         }
+    }
+    
+    func navigationBarSetUp() {
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 41/255, green: 182/255, blue: 246/255, alpha: 1)
     }
 }
 

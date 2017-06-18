@@ -9,7 +9,6 @@ target 'MonitoringApp' do
   pod 'SwiftChart'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
-  # Pods for MonitoringApp
 
   target 'MonitoringAppTests' do
     inherit! :search_paths
