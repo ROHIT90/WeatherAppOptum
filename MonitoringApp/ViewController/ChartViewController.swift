@@ -12,7 +12,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class BarChartViewController: UIViewController {
+class ChartViewController: UIViewController {
     
     var sensorName:String = ""
     var sensorNameArray = [String]()
@@ -40,7 +40,6 @@ class BarChartViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     func updateGraph(_ notification: NSNotification) {
@@ -65,7 +64,7 @@ class BarChartViewController: UIViewController {
             self.deviationValue.text = String(newValueTemp)
         }
     }
-    
+
     func getTemperatureRange() {
         Alamofire.request(RANGE_URL).responseJSON { resopnse in
             let result = resopnse.result

@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="125.4872563718141"/>
         </scene>
-        <!--Bar Chart View Controller-->
+        <!--Chart View Controller-->
         <scene sceneID="CP9-O5-QxN">
             <objects>
-                <viewController id="VI9-8i-yjt" customClass="BarChartViewController" customModule="MonitoringApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VI9-8i-yjt" customClass="ChartViewController" customModule="MonitoringApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HlS-gb-zXo"/>
                         <viewControllerLayoutGuide type="bottom" id="z7r-j0-D4w"/>

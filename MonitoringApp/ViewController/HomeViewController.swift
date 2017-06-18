@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == GRAPH_VIEW) {
-            let barViewController = segue.destination as! BarChartViewController
+            let barViewController = segue.destination as! ChartViewController
             barViewController.sensorName =  sensorName
         }
     }
