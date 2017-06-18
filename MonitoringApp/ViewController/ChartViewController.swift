@@ -38,10 +38,6 @@ class ChartViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     func updateGraph(_ notification: NSNotification) {
         if let item = notification.userInfo?["data"] as Any? {
             let swiftyJsonVar = JSON(item)
