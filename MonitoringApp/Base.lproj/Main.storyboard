@@ -93,7 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Select Sensor" id="1aX-VT-d6B"/>
                     <connections>
-                        <outlet property="tabbleView" destination="CNb-d7-k8i" id="CsE-Qd-MvH"/>
+                        <outlet property="tableView" destination="CNb-d7-k8i" id="m8W-Et-EiL"/>
                         <segue destination="VI9-8i-yjt" kind="show" identifier="barScene" id="v8n-Eg-7OA"/>
                     </connections>
                 </viewController>

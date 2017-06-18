@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var tabbleView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     var sensorNameArray = [String]()
     var sensorName:String = ""
     
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
                     self.sensorNameArray = data as! [String]
                 }
                 if self.sensorNameArray.count > 0 {
-                    self.tabbleView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tabbleView.indexPathForSelectedRow
+        let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!) as! HomeTableViewCell
         if let cellTitle = currentCell.titleLabel.text {
             sensorName = cellTitle
