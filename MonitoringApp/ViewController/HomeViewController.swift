@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
         if(segue.identifier == GRAPH_VIEW) {
             let barViewController = segue.destination as! ChartViewController
             barViewController.sensorName =  sensorName
+            SocketIOManager.sharedInstance.establishConnection()
         }
     }
     
@@ -64,7 +65,6 @@ extension HomeViewController: UITableViewDelegate {
             sensorName = cellTitle
         }
         SubscribedSensor.sharedInstance.subscirbedSensorName = currentCell.titleLabel.text
-        SocketIOManager.sharedInstance.establishConnection()
         performSegue(withIdentifier: GRAPH_VIEW, sender: nil)
     }
 }

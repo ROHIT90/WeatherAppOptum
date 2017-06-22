@@ -24,6 +24,16 @@ class SocketIOManager: NSObject {
             let dataDict:[String: Any] = ["data": dataArray]
             NotificationCenter.default.post(name: Notification.Name(rawValue: self.sensorDataNotificationKey), object: dataArray, userInfo: dataDict)
         }
+        
+//        socket.on("data") { ( dataArray, ack) -> Void in
+//            let dataDict:[String: Any] = ["init": dataArray]
+//            let swiftyJsonVar = JSON(dataDict)
+//            
+//            let type = swiftyJsonVar["recent"]["val"].arrayValue
+//            print("this is init dict\(type)")
+//            
+//        }
+
     }
     
     func establishConnection() {

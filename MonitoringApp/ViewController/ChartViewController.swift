@@ -29,35 +29,36 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = sensorName
+        getTemperatureRange()
+
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        getTemperatureRange()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
     }
-    
+
     func updateGraph(_ notification: NSNotification) {
         if let item = notification.userInfo?["data"] as Any? {
             let swiftyJsonVar = JSON(item)
-            let newValueTemp = swiftyJsonVar[0]["val"].floatValue
-            
-            self.temperatureArray.append(newValueTemp)
-            let series = ChartSeries(self.temperatureArray)
-            if newValueTemp > maxTemperature! || newValueTemp < minTemperature! {
-                series.color = ChartColors.redColor()
-                deviationValue.textColor = UIColor.red
-            } else if newValueTemp == maxTemperature! || newValueTemp == minTemperature! {
-                series.color = ChartColors.greenColor()
-                deviationValue.textColor = UIColor.green
-            } else {
-                series.color = ChartColors.greenColor()
-                deviationValue.textColor = UIColor.green
+            let type = swiftyJsonVar[0]["type"].stringValue
+            if type == "update" {
+                let newValueTemp = swiftyJsonVar[0]["val"].floatValue
+                self.temperatureArray.append(newValueTemp)
+                let series = ChartSeries(self.temperatureArray)
+                if newValueTemp > maxTemperature! || newValueTemp < minTemperature! {
+                    series.color = ChartColors.redColor()
+                    deviationValue.textColor = UIColor.red
+                } else if newValueTemp == maxTemperature! || newValueTemp == minTemperature! {
+                    series.color = ChartColors.greenColor()
+                    deviationValue.textColor = UIColor.green
+                } else {
+                    series.color = ChartColors.greenColor()
+                    deviationValue.textColor = UIColor.green
+                }
+                self.chart.add(series)
+                self.deviationValue.text = String(newValueTemp)
             }
-            
-            self.chart.add(series)
-            self.deviationValue.text = String(newValueTemp)
         }
     }
 
