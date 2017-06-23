@@ -30,20 +30,45 @@ class ChartViewController: UIViewController {
         super.viewDidLoad()
         self.title = sensorName
         getTemperatureRange()
-
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
+
     }
 
-    func updateGraph(_ notification: NSNotification) {
+    func updateMinuteGraph(_ notification: NSNotification) {
         if let item = notification.userInfo?["data"] as Any? {
-            let swiftyJsonVar = JSON(item)
-            let type = swiftyJsonVar[0]["type"].stringValue
-            if type == "update" {
-                let newValueTemp = swiftyJsonVar[0]["val"].floatValue
+            let jsonVar = JSON(item)
+            let typeScale = jsonVar[0]["scale"].stringValue
+            let type = jsonVar[0]["type"].stringValue
+            if type == "update" && typeScale == "minute" {
+                let newValueTemp = jsonVar[0]["val"].floatValue
+                self.temperatureArray.append(newValueTemp)
+                let series = ChartSeries(self.temperatureArray)
+                if newValueTemp > maxTemperature! || newValueTemp < minTemperature! {
+                    series.color = ChartColors.redColor()
+                    deviationValue.textColor = UIColor.red
+                } else if newValueTemp == maxTemperature! || newValueTemp == minTemperature! {
+                    series.color = ChartColors.greenColor()
+                    deviationValue.textColor = UIColor.green
+                } else {
+                    series.color = ChartColors.greenColor()
+                    deviationValue.textColor = UIColor.green
+                }
+                self.chart.add(series)
+                self.deviationValue.text = String(newValueTemp)
+            }
+        }
+    }
+    
+    func updateRecentGraph(_ notification: NSNotification) {
+        if let item = notification.userInfo?["data"] as Any? {
+            let jsonVar = JSON(item)
+            let typeScale = jsonVar[0]["scale"].stringValue
+            let type = jsonVar[0]["type"].stringValue
+            if type == "update" && typeScale == "recent" {
+                let newValueTemp = jsonVar[0]["val"].floatValue
                 self.temperatureArray.append(newValueTemp)
                 let series = ChartSeries(self.temperatureArray)
                 if newValueTemp > maxTemperature! || newValueTemp < minTemperature! {
@@ -85,4 +110,21 @@ class ChartViewController: UIViewController {
         }
     }
     
+    @IBAction func minuteButtonTapped(_ sender: Any) {
+        chart.removeAllSeries()
+        NotificationCenter.default.removeObserver(self)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateMinuteGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
+    }
+    @IBAction func recentButtonTapped(_ sender: Any) {
+        chart.removeAllSeries()
+        NotificationCenter.default.removeObserver(self)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateRecentGraph(_:)), name: NSNotification.Name(rawValue: sensorDataNotificationKey), object: nil)
+    }
+    @IBAction func unsubscribeButtonTapped(_ sender: Any) {
+        SocketIOManager.sharedInstance.unsubscribe()
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
 }

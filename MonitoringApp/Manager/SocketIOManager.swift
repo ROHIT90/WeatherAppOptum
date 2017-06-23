@@ -25,15 +25,17 @@ class SocketIOManager: NSObject {
             NotificationCenter.default.post(name: Notification.Name(rawValue: self.sensorDataNotificationKey), object: dataArray, userInfo: dataDict)
         }
         
-//        socket.on("data") { ( dataArray, ack) -> Void in
-//            let dataDict:[String: Any] = ["init": dataArray]
-//            let swiftyJsonVar = JSON(dataDict)
-//            
-//            let type = swiftyJsonVar["recent"]["val"].arrayValue
-//            print("this is init dict\(type)")
-//            
-//        }
-
+        socket.on("data") { ( dataArray, ack) -> Void in
+            print("initial data array\(dataArray)")
+            let dataDict:[String: Any] = ["init": dataArray]
+            let jsonVar = JSON(dataDict)
+            let type = jsonVar["minute"]["val"].arrayValue
+            print("this is init dict\(type)")
+        }
+    }
+    
+    func unsubscribe() {
+        self.socket.emit("unsubscribe", SubscribedSensor.sharedInstance.subscirbedSensorName!)
     }
     
     func establishConnection() {
